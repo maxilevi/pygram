@@ -1,2 +1,36 @@
-# pygram
-python bot that upload scheduled photos to instagram
+# PyGram
+A python bot that posts saved images to instagram on a configured schedule.
+
+## How to Setup
+To run the bot you need a settings.json file defining your Instagram credentials, below are some examples.
+
+
+## Example `settings.json`
+```
+{
+  "username" : "user123",
+  "password" : "pass123"
+  "tags" : [
+    "nature",
+    "forests",
+    "trees"
+  ]
+}
+```
+## How to schedule a post
+Use the `schedule.py` tool
+```
+$ python schedule.py -h
+usage: schedule.py [-h] [--use_tags USE_TAGS] path caption
+
+positional arguments:
+  path                 Path to the image file.
+  caption              Caption the image should be published with.
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --use_tags USE_TAGS  Append the tags in the settings.json file to the
+                       caption
+```
+## license
+(c) 2018 MIT License. Maxi Levi
