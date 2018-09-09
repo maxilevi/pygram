@@ -5,16 +5,20 @@ A python bot that posts saved images to instagram on a configured schedule.
 Use the `schedule.py` tool
 ```
 $ python schedule.py -h
-usage: schedule.py [-h] [--use_tags USE_TAGS] path caption
+usage: schedule.py [-h] [--path PATH] [--url URL] [--tags TAGS] caption
 
 positional arguments:
-  path                 Path to the image file.
-  caption              Caption the image should be published with.
+  caption      Caption the image should be published with.
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --use_tags USE_TAGS  Append the tags in the settings.json file to the
-                       caption
+  -h, --help   show this help message and exit
+  --path PATH  Path to the image file.
+  --url URL    Url to the image file.
+  --tags TAGS  Append the tags in the settings.json file to the caption.
+               Separated by a comma
+```
+```
+$ python schedule.py --path='<path-to-file>' --tags='tag1,tag2,tag3' 'A really descriptive caption'
 ```
 ## How to Setup
 To run the bot you need a settings.json file defining your Instagram credentials, below are some examples.
