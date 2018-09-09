@@ -4,6 +4,7 @@ import random
 import project
 from os import path
 import json
+from PIL import Image
 
 
 def get_schedule_path() -> str:
@@ -30,8 +31,9 @@ def random_code() -> str:
 
 def schedule(url: str, caption: str, tags: str):
     code = random_code()
-    image_path = f"{project.get_content_dir()}/{code}"
-    urllib.request.urlretrieve(url, image_path)
+    image_path = f"{project.get_content_dir()}/{code}.jpg"
+    _, ext = path.splitext(url)
+    retrieve_as_jpg(url, image_path, ext)
     saved = load()
     saved[code] = {
         'image': image_path,
@@ -39,3 +41,12 @@ def schedule(url: str, caption: str, tags: str):
         'tags': ("".join(tags.split())).split(',')  # Remove all whitespace and then separate by ,
     }
     save(saved)
+
+
+def retrieve_as_jpg(url: str, image_path: str, ext: str):
+    tmp_path = f"{image_path}{ext}"
+    urllib.request.urlretrieve(url, tmp_path)
+    im = Image.open(tmp_path)
+    if not im.mode == 'RGB':
+        im = im.convert('RGB')
+    im.save(image_path, quality=95)
