@@ -1,6 +1,7 @@
 import json
-from worker import Grammer
+from worker import Instagrammer
 from os import path
+import project
 
 
 def load_config(config_path: str) -> dict:
@@ -10,6 +11,6 @@ def load_config(config_path: str) -> dict:
         return json.load(fp)
 
 
-config = load_config(path.dirname(__file__) + '/settings.json')
-grammer = Grammer(config)
-grammer.start()
+config = load_config(f"{project.get_dir()}/settings.json")
+instagrammer = Instagrammer(config)
+instagrammer.start()
