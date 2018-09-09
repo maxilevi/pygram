@@ -28,11 +28,6 @@ To run the bot you need a settings.json file defining your Instagram credentials
 {
   "username" : "user123",
   "password" : "pass123",
-  "frequency" : {
-    "minute" : "30",
-    "hour" : "12",
-    "day"  : "*",
-  },
   "tags" : [
     "nature",
     "forests",
@@ -40,7 +35,7 @@ To run the bot you need a settings.json file defining your Instagram credentials
   ]
 }
 ```
-This config will post a scheduled image every day at 12:30 PM, using the defined tags on the 'user123' account with the 'pass123'.
+This config will post a scheduled image every time it's executed (I suggest using `cron` for this), using the defined tags on the `user123` account with the `pass123`.
 
 ## license
 (c) 2018 MIT License. Maxi Levi
