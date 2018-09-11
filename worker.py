@@ -5,9 +5,10 @@ import scheduler
 class Instagrammer:
 
     def __init__(self, config: dict):
-        self.instagram_api = InstagramAPI(config['username'], config['password'])
+        self.config = config
+        self.instagram_api = InstagramAPI(self.config['username'], self.config['password'])
         self.schedule_items = scheduler.load()
-        self.tags = config['tags']
+        self.tags = self.config['tags']
 
     def start(self):
         if len(self.schedule_items) == 0:
@@ -19,10 +20,10 @@ class Instagrammer:
         scheduler.save(self.schedule_items)
 
     def upload(self, upload_options: dict):
-        caption = Instagrammer.create_caption(upload_options, self.tags)
+        caption = Instagrammer.create_caption(upload_options, self.tags, self.config)
         print(f"Uploading image with caption:\n{caption}")
         self.instagram_api.uploadPhoto(upload_options['image'], caption=caption)
 
     @staticmethod
-    def create_caption(upload_options: dict, tags: list):
-        return f"{upload_options['caption']}\n.\n.\n{(' #'.join(upload_options['tags'] + tags)).strip()}"
+    def create_caption(upload_options: dict, tags: list, config: dict):
+        return f"{upload_options['caption']}\n{config['extra_caption']}\n.\n.\n{(' #'.join(upload_options['tags'] + tags)).strip()}"
