@@ -26,8 +26,9 @@ To run the bot you need a settings.json file defining your Instagram credentials
 ### Example `settings.json`
 ```
 {
-  "username" : "user123",
-  "password" : "pass123",
+  "username" : "foo",
+  "password" : "bar",
+  "extra_caption" : "",
   "tags" : [
     "nature",
     "forests",
@@ -35,7 +36,7 @@ To run the bot you need a settings.json file defining your Instagram credentials
   ]
 }
 ```
-This config will post a scheduled image every time it's executed (I suggest using `cron` for this), using the defined tags on the `user123` account with the `pass123`.
+This config will post a scheduled image every time it's executed (I suggest using `cron` for this), using the defined tags on the `foo` account with the `bar`, with no extra caption.
 
 ## license
 (c) 2018 MIT License. Maxi Levi
